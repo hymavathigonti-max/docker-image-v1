@@ -1,1 +1,734 @@
-﻿<h1>Hello! My Automated CI/CD Pipeline Works!</h1>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aqua Haven · fish aquarium store</title>
+  <!-- Font Awesome 6 (free) for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+
+    body {
+      background: #f0f9ff;
+      color: #023047;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header / navbar */
+    .navbar {
+      background: #ffffff;
+      box-shadow: 0 4px 20px rgba(0, 40, 60, 0.08);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #0077b6;
+    }
+
+    .logo i {
+      font-size: 32px;
+      color: #0096c7;
+    }
+
+    .logo span {
+      color: #023e8a;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #023e8a;
+      transition: 0.2s;
+      font-size: 16px;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #0096c7;
+      border-bottom-color: #0096c7;
+    }
+
+    .icons {
+      display: flex;
+      gap: 20px;
+      font-size: 20px;
+      color: #0077b6;
+    }
+
+    .icons i {
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .icons i:hover {
+      color: #03045e;
+      transform: scale(1.05);
+    }
+
+    /* hero section */
+    .hero {
+      background: linear-gradient(135deg, #caf0f8 0%, #ade8f4 100%);
+      border-radius: 0 0 60px 60px;
+      padding: 60px 0 70px;
+      margin-bottom: 40px;
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text .badge {
+      background: #0096c7;
+      color: white;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .hero-text h1 {
+      font-size: 48px;
+      line-height: 1.2;
+      color: #03045e;
+      margin-bottom: 20px;
+    }
+
+    .hero-text h1 i {
+      color: #0077b6;
+      font-size: 44px;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      color: #023e8a;
+      max-width: 500px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .btn-primary {
+      background: #0077b6;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 14px 36px;
+      border-radius: 40px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 8px 18px rgba(0, 119, 182, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .btn-primary i {
+      font-size: 18px;
+    }
+
+    .btn-primary:hover {
+      background: #03045e;
+      box-shadow: 0 10px 22px rgba(3, 4, 94, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .hero-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      filter: drop-shadow(0 20px 30px rgba(0, 50, 80, 0.2));
+      border-radius: 40px;
+    }
+
+    /* section titles */
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #03045e;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title i {
+      color: #0096c7;
+      font-size: 32px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: #0077b6;
+      margin-bottom: 40px;
+      opacity: 0.8;
+    }
+
+    /* products grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      margin: 30px 0 60px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 28px;
+      padding: 22px 20px 24px;
+      box-shadow: 0 12px 30px rgba(0, 40, 60, 0.06);
+      transition: all 0.25s ease;
+      border: 1px solid #d9f0f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 40px rgba(0, 119, 182, 0.15);
+      border-color: #90e0ef;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      background: #e7f6fd;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .product-img img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: 0.3s;
+    }
+
+    .product-card:hover .product-img img {
+      transform: scale(1.05);
+    }
+
+    .product-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #03045e;
+      margin-bottom: 8px;
+    }
+
+    .product-card .desc {
+      font-size: 14px;
+      color: #0077b6;
+      margin-bottom: 12px;
+      opacity: 0.8;
+      padding: 0 6px;
+    }
+
+    .price {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0096c7;
+      margin-bottom: 16px;
+    }
+
+    .price small {
+      font-size: 14px;
+      font-weight: 400;
+      color: #6c9eb3;
+    }
+
+    .btn-add {
+      background: #ffffff;
+      border: 2px solid #0096c7;
+      color: #0096c7;
+      font-weight: 600;
+      padding: 10px 26px;
+      border-radius: 40px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.2s;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-add i {
+      font-size: 15px;
+    }
+
+    .btn-add:hover {
+      background: #0096c7;
+      color: white;
+      border-color: #0096c7;
+    }
+
+    /* features / trust section */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      background: white;
+      border-radius: 50px;
+      padding: 38px 40px;
+      margin: 60px 0;
+      box-shadow: 0 10px 30px rgba(0, 119, 182, 0.06);
+      border: 1px solid #d9f0f7;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .feature-item i {
+      font-size: 36px;
+      color: #0096c7;
+      width: 50px;
+    }
+
+    .feature-item h4 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #03045e;
+    }
+
+    .feature-item p {
+      font-size: 14px;
+      color: #0077b6;
+      opacity: 0.8;
+    }
+
+    /* footer */
+    .footer {
+      background: #03045e;
+      color: #caf0f8;
+      padding: 50px 0 25px;
+      border-radius: 50px 50px 0 0;
+      margin-top: 20px;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #90e0ef;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .footer-col a {
+      display: block;
+      color: #ade8f4;
+      text-decoration: none;
+      margin-bottom: 12px;
+      font-size: 15px;
+      opacity: 0.8;
+      transition: 0.2s;
+    }
+
+    .footer-col a:hover {
+      opacity: 1;
+      color: white;
+      padding-left: 4px;
+    }
+
+    .social i {
+      font-size: 22px;
+      margin-right: 18px;
+      color: #90e0ef;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .social i:hover {
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 25px;
+      border-top: 1px solid #1e3a6b;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-content {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+      .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .nav-links {
+        display: none;
+      }
+      .section-title {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-text h1 {
+        font-size: 34px;
+      }
+      .features {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px;
+      }
+      .footer-grid {
+        flex-direction: column;
+        gap: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="container nav-container">
+    <div class="logo">
+      <i class="fas fa-fish"></i>
+      <span>Aqua</span>Haven
+    </div>
+    <nav class="nav-links">
+      <a href="#" class="active">Home</a>
+      <a href="#">Aquariums</a>
+      <a href="#">Fish</a>
+      <a href="#">Supplies</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="icons">
+      <i class="fas fa-search"></i>
+      <i class="fas fa-user"></i>
+      <i class="fas fa-shopping-cart"></i>
+    </div>
+  </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="container hero-content">
+    <div class="hero-text">
+      <span class="badge"><i class="fas fa-water"></i> live fish & aquariums</span>
+      <h1>Bring <i class="fas fa-fish"></i> ocean calm <br>into your home</h1>
+      <p>Premium aquariums, vibrant tropical fish, and everything you need to create a stunning underwater world.</p>
+      <a href="#" class="btn-primary">
+        <i class="fas fa-water"></i> Shop now
+      </a>
+    </div>
+    <div class="hero-image">
+      <!-- decorative aquarium illustration using SVG (no external image) -->
+      <svg width="420" height="300" viewBox="0 0 420 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="40" width="380" height="220" rx="30" fill="#ADE8F4" stroke="#0096C7" stroke-width="6"/>
+        <rect x="40" y="60" width="340" height="180" rx="20" fill="#CAF0F8"/>
+        <!-- water plants -->
+        <path d="M90 210 Q 100 150 110 210" stroke="#2D6A4F" stroke-width="8" stroke-linecap="round" fill="none"/>
+        <path d="M120 220 Q 130 170 140 220" stroke="#40916C" stroke-width="8" stroke-linecap="round" fill="none"/>
+        <path d="M320 200 Q 330 130 340 200" stroke="#2D6A4F" stroke-width="8" stroke-linecap="round" fill="none"/>
+        <!-- fish 1 -->
+        <circle cx="180" cy="130" r="22" fill="#FFB703" stroke="#FB8500" stroke-width="4"/>
+        <circle cx="190" cy="122" r="5" fill="white"/>
+        <circle cx="192" cy="122" r="2.5" fill="#023047"/>
+        <path d="M158 130 L140 120 L140 140 L158 130" fill="#FB8500"/>
+        <!-- fish 2 -->
+        <circle cx="280" cy="170" r="18" fill="#F72585" stroke="#B5179E" stroke-width="4"/>
+        <circle cx="290" cy="162" r="4.5" fill="white"/>
+        <circle cx="292" cy="162" r="2" fill="#023047"/>
+        <path d="M262 170 L248 160 L248 180 L262 170" fill="#B5179E"/>
+        <!-- bubbles -->
+        <circle cx="210" cy="100" r="8" fill="#90E0EF" opacity="0.7"/>
+        <circle cx="230" cy="80" r="6" fill="#90E0EF" opacity="0.6"/>
+        <circle cx="250" cy="120" r="10" fill="#90E0EF" opacity="0.5"/>
+        <circle cx="150" cy="190" r="7" fill="#90E0EF" opacity="0.6"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT SECTION -->
+<div class="container">
+  <div class="section-title">
+    <i class="fas fa-water"></i> Featured aquariums
+  </div>
+  <div class="section-sub">Complete setups & elegant tanks for every space</div>
+
+  <div class="products-grid">
+    <!-- Aquarium product 1 -->
+    <div class="product-card">
+      <div class="product-img">
+        <svg width="180" height="140" viewBox="0 0 180 140" fill="none">
+          <rect x="10" y="20" width="160" height="100" rx="18" fill="#E0F2FE" stroke="#0096C7" stroke-width="4"/>
+          <rect x="28" y="38" width="124" height="64" rx="12" fill="#B3E4F5"/>
+          <path d="M50 95 Q 65 60 80 95" stroke="#2D6A4F" stroke-width="5" fill="none"/>
+          <path d="M110 90 Q 120 55 130 90" stroke="#40916C" stroke-width="5" fill="none"/>
+          <circle cx="80" cy="70" r="12" fill="#FFB703"/>
+          <circle cx="87" cy="65" r="3" fill="white"/>
+          <circle cx="88" cy="65" r="1.5" fill="#023047"/>
+        </svg>
+      </div>
+      <h3>Nano Reef 20</h3>
+      <div class="desc">Curved glass, LED lighting, silent filter</div>
+      <div class="price">$189 <small>USD</small></div>
+      <button class="btn-add"><i class="fas fa-cart-plus"></i> Add to cart</button>
+    </div>
+
+    <!-- Aquarium product 2 -->
+    <div class="product-card">
+      <div class="product-img">
+        <svg width="180" height="140" viewBox="0 0 180 140" fill="none">
+          <rect x="20" y="15" width="140" height="110" rx="22" fill="#E0F2FE" stroke="#0096C7" stroke-width="4"/>
+          <rect x="38" y="33" width="104" height="74" rx="14" fill="#B3E4F5"/>
+          <path d="M60 100 Q 75 50 90 100" stroke="#2D6A4F" stroke-width="5" fill="none"/>
+          <circle cx="120" cy="75" r="14" fill="#F72585"/>
+          <circle cx="127" cy="69" r="3.5" fill="white"/>
+          <circle cx="128" cy="69" r="1.8" fill="#023047"/>
+          <circle cx="60" cy="70" r="7" fill="#90E0EF" opacity="0.7"/>
+        </svg>
+      </div>
+      <h3>AquaScape Pro 40</h3>
+      <div class="desc">Panoramic view, 3-stage filtration</div>
+      <div class="price">$329 <small>USD</small></div>
+      <button class="btn-add"><i class="fas fa-cart-plus"></i> Add to cart</button>
+    </div>
+
+    <!-- Aquarium product 3 -->
+    <div class="product-card">
+      <div class="product-img">
+        <svg width="180" height="140" viewBox="0 0 180 140" fill="none">
+          <rect x="10" y="25" width="160" height="95" rx="16" fill="#E0F2FE" stroke="#0096C7" stroke-width="4"/>
+          <rect x="30" y="42" width="120" height="60" rx="12" fill="#B3E4F5"/>
+          <path d="M120 100 Q 135 50 150 100" stroke="#2D6A4F" stroke-width="5" fill="none"/>
+          <circle cx="80" cy="72" r="15" fill="#FFB703"/>
+          <circle cx="88" cy="66" r="4" fill="white"/>
+          <circle cx="89" cy="66" r="2" fill="#023047"/>
+          <circle cx="55" cy="60" r="6" fill="#90E0EF" opacity="0.8"/>
+        </svg>
+      </div>
+      <h3>Cube Flow 15</h3>
+      <div class="desc">Compact square, ideal for bettas</div>
+      <div class="price">$129 <small>USD</small></div>
+      <button class="btn-add"><i class="fas fa-cart-plus"></i> Add to cart</button>
+    </div>
+
+    <!-- Aquarium product 4 -->
+    <div class="product-card">
+      <div class="product-img">
+        <svg width="180" height="140" viewBox="0 0 180 140" fill="none">
+          <rect x="15" y="20" width="150" height="105" rx="24" fill="#E0F2FE" stroke="#0096C7" stroke-width="4"/>
+          <rect x="35" y="38" width="110" height="69" rx="16" fill="#B3E4F5"/>
+          <path d="M50 95 Q 65 55 80 95" stroke="#2D6A4F" stroke-width="5" fill="none"/>
+          <path d="M100 90 Q 110 60 120 90" stroke="#40916C" stroke-width="5" fill="none"/>
+          <circle cx="130" cy="70" r="11" fill="#F72585"/>
+          <circle cx="136" cy="65" r="3" fill="white"/>
+          <circle cx="137" cy="65" r="1.5" fill="#023047"/>
+        </svg>
+      </div>
+      <h3>Lux Reef 60</h3>
+      <div class="desc">Sump ready, rimless, starfire glass</div>
+      <div class="price">$459 <small>USD</small></div>
+      <button class="btn-add"><i class="fas fa-cart-plus"></i> Add to cart</button>
+    </div>
+  </div>
+
+  <!-- live fish section (small) -->
+  <div class="section-title" style="margin-top: 20px;">
+    <i class="fas fa-fish"></i> Live fish & corals
+  </div>
+  <div class="section-sub">Healthy, tank‑raised species ready for your aquarium</div>
+  <div class="products-grid" style="margin-bottom: 20px;">
+    <div class="product-card">
+      <div class="product-img">
+        <svg width="160" height="130" viewBox="0 0 160 130">
+          <circle cx="80" cy="65" r="40" fill="#FFB703" stroke="#FB8500" stroke-width="4"/>
+          <circle cx="95" cy="52" r="6" fill="white"/>
+          <circle cx="98" cy="52" r="3" fill="#023047"/>
+          <path d="M40 65 L15 45 L15 85 L40 65" fill="#FB8500"/>
+          <circle cx="60" cy="80" r="4" fill="#FFD166"/>
+          <circle cx="80" cy="90" r="4" fill="#FFD166"/>
+        </svg>
+      </div>
+      <h3>Ocellaris Clown</h3>
+      <div class="desc">Captive‑bred, hardy & colorful</div>
+      <div class="price">$34 <small>USD</small></div>
+      <button class="btn-add"><i class="fas fa-cart-plus"></i> Add to cart</button>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <svg width="160" height="130" viewBox="0 0 160 130">
+          <circle cx="80" cy="65" r="38" fill="#F72585" stroke="#B5179E" stroke-width="4"/>
+          <circle cx="94" cy="55" r="5.5" fill="white"/>
+          <circle cx="96" cy="55" r="2.5" fill="#023047"/>
+          <path d="M42 65 L18 50 L18 80 L42 65" fill="#B5179E"/>
+          <circle cx="55" cy="80" r="3.5" fill="#FF99C8"/>
+        </svg>
+      </div>
+      <h3>Pink Skunk Clown</h3>
+      <div class="desc">Peaceful, vibrant pink hue</div>
+      <div class="price">$42 <small>USD</small></div>
+      <button class="btn-add"><i class="fas fa-cart-plus"></i> Add to cart</button>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <svg width="160" height="130" viewBox="0 0 160 130">
+          <ellipse cx="80" cy="65" rx="42" ry="28" fill="#4CC9F0" stroke="#0096C7" stroke-width="4"/>
+          <circle cx="100" cy="52" r="5" fill="white"/>
+          <circle cx="102" cy="52" r="2.5" fill="#023047"/>
+          <path d="M38 65 L15 52 L15 78 L38 65" fill="#0096C7"/>
+          <circle cx="60" cy="78" r="4" fill="#90E0EF"/>
+        </svg>
+      </div>
+      <h3>Blue Chromis</h3>
+      <div class="desc">Schooling, reef‑safe, active</div>
+      <div class="price">$28 <small>USD</small></div>
+      <button class="btn-add"><i class="fas fa-cart-plus"></i> Add to cart</button>
+    </div>
+  </div>
+
+  <!-- features / trust badges -->
+  <div class="features">
+    <div class="feature-item">
+      <i class="fas fa-truck"></i>
+      <div>
+        <h4>Free shipping</h4>
+        <p>on orders over $99</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <i class="fas fa-leaf"></i>
+      <div>
+        <h4>Live arrival guarantee</h4>
+        <p>safe & healthy fish</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <i class="fas fa-headset"></i>
+      <div>
+        <h4>Expert support</h4>
+        <p>aquarium advice 24/7</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <i class="fas fa-shield-alt"></i>
+      <div>
+        <h4>2‑year warranty</h4>
+        <p>on all aquariums</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="logo" style="color: #90e0ef; margin-bottom: 15px;">
+          <i class="fas fa-fish"></i> AquaHaven
+        </div>
+        <p style="opacity: 0.7; font-size: 15px; max-width: 240px;">Creating underwater dreams since 2012. Quality you can trust.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="#">Aquariums</a>
+        <a href="#">Fish</a>
+        <a href="#">Corals</a>
+        <a href="#">Supplies</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">FAQ</a>
+        <a href="#">Shipping</a>
+        <a href="#">Returns</a>
+        <a href="#">Contact us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Follow us</h4>
+        <div class="social">
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-youtube"></i>
+          <i class="fab fa-tiktok"></i>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <i class="far fa-copyright"></i> 2025 AquaHaven — fish aquarium store. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
